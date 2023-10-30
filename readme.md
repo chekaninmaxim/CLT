@@ -113,7 +113,7 @@ docker exec -it docker_cluster-spark-master-1 sh
 Чекаємо поки запуститься...
 
 Якщо подивитись, як описаний контейнер із spark-master, то можна побачити, що там є bind mount папки docker_cluster/spark_apps в папку  /opt/spark-apps/ це означає, що spark-master контейнер бачитиме всі файли, які ми покладемо в папку docker_cluster/spark_apps.
-Це дозволяє нам змінювати код на нашій машині і легко передавати цей код у вигляді файлів .py (у випадку pyspark) або .jar (у випадку java або scala) в контейнер, для подальшого запуску. Зараз там є файли pyspark_app.py та spark_app.jar, але можуть бути будь-які ваші файли. Для експериментів є проект на scala micro_batch_processor, де можна знайти код, який було скомпільовано в файл spark_app.jar. Також є pyspark версія pyspark_microbatch_processor аналогічний проект написаний на python.
+Це дозволяє нам змінювати код на нашій машині і легко передавати цей код у вигляді файлів .py (у випадку pyspark) або .jar (у випадку java або scala) в контейнер, для подальшого запуску. Зараз там є файли pyspark_app.py та spark_app.jar, але можуть бути будь-які ваші файли. Для експериментів є проект на scala  [micro_batch_processor](https://github.com/chekaninmaxim/micro_batch_processor), де можна знайти код, який було скомпільовано в файл spark_app.jar. Також є pyspark версія [pyspark_microbatch_processor](https://github.com/chekaninmaxim/pyspark_micro_batch_processor) аналогічний проект написаний на python.
 
 
 ### Крок 6. Запускаємо генератор рандомних чисел локально
