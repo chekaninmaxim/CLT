@@ -122,14 +122,15 @@ docker exec -it docker_cluster-spark-master-1 sh
 Заходимо в папку CLT/random_data_generator
 
 Виконуємо команду 
+
+linux:
+```
+source ./venv/Scripts/activate
+```
+windows:
+
 ```
 ./venv/Scripts/activate
-```
-
-Встановлюємо модуль python-kafka
-
-```
- pip install python-kafka
 ```
 
 Запускаємо скріпт main.py:
@@ -144,7 +145,10 @@ python main.py
 Відкриваємо localhost:8501 та дивимось як гістограма стає все більше і більше схожою на гаусовий розподіл (або ні)
 
 
-
+### Troubleshot
+ - Кластер запустився, але процес spark та pyspark не відпрацьовує як требо. Не відображає, що данні погружаються. Скоріш за все не вистачає апаратних ресурсів. Треба CPU 8 логічних ядер та пам’яті >8Гб. Платформа: Docker v.4.25.0; OS: Windows 10.
+ - Помилка при запуску контейнера порт зайнятий. Рішення: Спробуйте перезапустити службу winnat (restart-service winnat). Платформа: Docker v.4.25.0; OS: Windows 10.
+ - Контейнера Spark не запускаються з помилко в лог файлі: ‘/start-spark.sh: line 2: $'\r': command not found’. Причина: Не коректне форматування файлу .\docker_cluster\spark_node_image\start-spark.sh, перехід на нову рядок ‘CRLF’, а треба ‘LF’. Рішення: Змінити налаштування Git локально %ProgramFiles%\git\etc\gitconfig файл. Замінити: ‘autocrlf=true’ на ‘autocrlf = input’, та забрати файл знову. Платформа: Docker v.4.25.0; OS: Windows 10.
 
 
  

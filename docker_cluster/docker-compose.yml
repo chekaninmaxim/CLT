@@ -2,7 +2,6 @@ version: "3"
 
 services:
   zookeeper:
-    restart: always
     image: docker.io/bitnami/zookeeper:3.8
     ports:
       - "2181:2181"
@@ -11,7 +10,6 @@ services:
     environment:
       - ALLOW_ANONYMOUS_LOGIN=yes
   kafka:
-    restart: always
     image: docker.io/bitnami/kafka:3.3
     ports:
       - "9093:9093"
@@ -70,6 +68,8 @@ services:
       - hive-metastore-postgresql
   hive-metastore-postgresql:
     image: bde2020/hive-metastore-postgresql:2.3.0
+    volumes:
+      - "postgres-metastore-volume:/var/lib/postgresql/data"
   spark-master:
     image: cluster-apache-spark
     ports:
@@ -109,3 +109,4 @@ volumes:
   zookeeper-volume:
   namenode:
   datanode:
+  postgres-metastore-volume:
